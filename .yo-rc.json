@@ -1,0 +1,34 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.cwi.crescer"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "blog",
+    "packageName": "br.com.cwi.crescer",
+    "packageFolder": "br/com/cwi/crescer",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OWYxNGM1MDkyMzU0YzY0ZDkyZmMzODU3ZDY3ZmRkNWQwNzZlNmJjYzBmYmYzOWE3YWJkYzEwYjU2ZmMxNTVlNjUxMzU1NTBiOWVjMGZiNTAwOTM2NDc4NmExMDA0MWJiMWU4YjVkZDg5MDY1ZWVlMzkwYjQ4ZjA2MjA1YzUwYWM=",
+    "clientFramework": "react",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false,
+    "herokuAppName": "blog-cresceres",
+    "herokuDeployType": "jar"
+  }
+}
