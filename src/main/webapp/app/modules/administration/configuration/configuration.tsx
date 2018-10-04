@@ -58,7 +58,7 @@ export class ConfigurationPage extends React.Component<IConfigurationPageProps, 
     const env = configuration && configuration.env ? configuration.env : {};
     return (
       <div>
-        <h2 className="configuration-page-heading">Configuration</h2>
+        <h2 id="configuration-page-heading">Configuration</h2>
         <span>Filter</span> <Input type="search" value={filter} onChange={this.setFilter} name="search" id="search" />
         <label>Spring configuration</label>
         <Table className="table table-striped table-bordered table-responsive d-table">
