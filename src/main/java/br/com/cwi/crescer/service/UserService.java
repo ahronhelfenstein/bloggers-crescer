@@ -238,6 +238,11 @@ public class UserService {
         return userRepository.findOneWithAuthoritiesByLogin(login);
     }
 
+    public User getLoggedUser(){
+        return userRepository.findOneWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get();
+    }
+
+
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthorities(Long id) {
         return userRepository.findOneWithAuthoritiesById(id);

@@ -4,6 +4,7 @@ import br.com.cwi.crescer.BlogApp;
 
 import br.com.cwi.crescer.domain.Blog;
 import br.com.cwi.crescer.repository.BlogRepository;
+import br.com.cwi.crescer.service.UserService;
 import br.com.cwi.crescer.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -49,6 +50,9 @@ public class BlogResourceIntTest {
     private BlogRepository blogRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -67,7 +71,7 @@ public class BlogResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BlogResource blogResource = new BlogResource(blogRepository);
+        final BlogResource blogResource = new BlogResource(blogRepository,userService);
         this.restBlogMockMvc = MockMvcBuilders.standaloneSetup(blogResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -181,7 +185,7 @@ public class BlogResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].handle").value(hasItem(DEFAULT_HANDLE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getBlog() throws Exception {

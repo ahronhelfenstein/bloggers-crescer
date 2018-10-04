@@ -3,6 +3,8 @@ package br.com.cwi.crescer.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import br.com.cwi.crescer.domain.Blog;
 import br.com.cwi.crescer.repository.BlogRepository;
+import br.com.cwi.crescer.security.SecurityUtils;
+import br.com.cwi.crescer.service.UserService;
 import br.com.cwi.crescer.web.rest.errors.BadRequestAlertException;
 import br.com.cwi.crescer.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,8 +33,11 @@ public class BlogResource {
 
     private final BlogRepository blogRepository;
 
-    public BlogResource(BlogRepository blogRepository) {
+    private final UserService userService;
+
+    public BlogResource(BlogRepository blogRepository, UserService userService) {
         this.blogRepository = blogRepository;
+        this.userService = userService;
     }
 
     /**
@@ -49,6 +54,7 @@ public class BlogResource {
         if (blog.getId() != null) {
             throw new BadRequestAlertException("A new blog cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        blog.setUser(userService.getLoggedUser());
         Blog result = blogRepository.save(blog);
         return ResponseEntity.created(new URI("/api/blogs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -86,7 +92,7 @@ public class BlogResource {
     @Timed
     public List<Blog> getAllBlogs() {
         log.debug("REST request to get all Blogs");
-        return blogRepository.findAll();
+        return blogRepository.findByUserIsCurrentUser();
     }
 
     /**
@@ -113,8 +119,13 @@ public class BlogResource {
     @Timed
     public ResponseEntity<Void> deleteBlog(@PathVariable Long id) {
         log.debug("REST request to delete Blog : {}", id);
+        Blog blog = blogRepository.findById(id).get();
+        if(blog.getUser().getId().equals(userService.getLoggedUser().getId())){
+            blogRepository.deleteById(id);
+        }else{
+            throw new SecurityException();
+        }
 
-        blogRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }
