@@ -32,8 +32,7 @@ public class Blog implements Serializable {
     @Column(name = "handle", nullable = false)
     private String handle;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
+    @ManyToOne    @JsonIgnoreProperties("")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

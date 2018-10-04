@@ -62,7 +62,7 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
     const { users, account, match, totalItems } = this.props;
     return (
       <div>
-        <h2 className="userManagement-page-heading">
+        <h2 id="user-management-page-heading">
           Users
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
             <FontAwesomeIcon icon="plus" /> Create a new user
@@ -88,7 +88,7 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
               <th className="hand" onClick={this.sort('lastModifiedBy')}>
                 Last Modified By<FontAwesomeIcon icon="sort" />
               </th>
-              <th className="hand" onClick={this.sort('lastModifiedDate')}>
+              <th id="modified-date-sort" className="hand" onClick={this.sort('lastModifiedDate')}>
                 Last Modified Date<FontAwesomeIcon icon="sort" />
               </th>
               <th />

@@ -38,12 +38,10 @@ public class Entry implements Serializable {
     @Column(name = "jhi_date", nullable = false)
     private Instant date;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
+    @ManyToOne    @JsonIgnoreProperties("")
     private Blog blog;
 
-    @ManyToMany
-    @JoinTable(name = "entry_tag",
+    @ManyToMany    @JoinTable(name = "entry_tag",
                joinColumns = @JoinColumn(name = "entries_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "tags_id", referencedColumnName = "id"))
     private Set<Tag> tags = new HashSet<>();

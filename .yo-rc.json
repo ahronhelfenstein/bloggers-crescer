@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "br.com.cwi.crescer"
     },
-    "jhipsterVersion": "5.3.4",
+    "jhipsterVersion": "5.4.0",
     "applicationType": "monolith",
     "baseName": "blog",
     "packageName": "br.com.cwi.crescer",
@@ -29,6 +29,7 @@
     "otherModules": [],
     "enableTranslation": false,
     "herokuAppName": "blog-cresceres",
-    "herokuDeployType": "jar"
+    "herokuDeployType": "jar",
+    "enableHibernateCache": false
   }
 }

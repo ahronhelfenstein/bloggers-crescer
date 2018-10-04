@@ -29,9 +29,7 @@ public class Tag implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
-    @JsonIgnore
-    private Set<Entry> entries = new HashSet<>();
+    @ManyToMany(mappedBy = "tags")@JsonIgnore    private Set<Entry> entries = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
